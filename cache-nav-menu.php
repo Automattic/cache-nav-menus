@@ -13,7 +13,7 @@
  * Description: Allows Core Nave Menus to be cached using WP.com's Advanced Post Cache
  * Author: Automattic
  * Version: 1.0
-  */
+ */
 
 /**
  * Filters `parse_query` to add necessary caching parameters.
@@ -28,7 +28,7 @@ function cache_nav_menu_parse_query( &$query ) {
 	}
 
 	$query->query_vars['suppress_filters'] = false;
-	$query->query_vars['cache_results'] = true;
+	$query->query_vars['cache_results']    = true;
 }
 add_action( 'parse_query', 'cache_nav_menu_parse_query' );
 
@@ -49,9 +49,9 @@ function wpcom_vip_cached_nav_menu( $args = array(), $prime_cache = false ) {
 	$queried_object_id = empty( $wp_query->queried_object_id ) ? 0 : (int) $wp_query->queried_object_id;
 
 	$nav_menu_key = md5( serialize( $args ) . '-' . $queried_object_id );
-	$my_args = wp_parse_args( $args );
-	$my_args = apply_filters( 'wp_nav_menu_args', $my_args );
-	$my_args = (object) $my_args;
+	$my_args      = wp_parse_args( $args );
+	$my_args      = apply_filters( 'wp_nav_menu_args', $my_args );
+	$my_args      = (object) $my_args;
 
 	if ( ( isset( $my_args->echo ) && true === $my_args->echo ) || ! isset( $my_args->echo ) ) {
 		$echo = true;
@@ -88,14 +88,14 @@ function wpcom_vip_cached_nav_menu( $args = array(), $prime_cache = false ) {
  * @return mixed $object_ids An array of nav menu objects.
  */
 function wpcom_vip_get_nav_menu_cache_objects( $use_cache = true ) {
-	$cache_key = 'wpcom_vip_nav_menu_cache_object_ids';
+	$cache_key  = 'wpcom_vip_nav_menu_cache_object_ids';
 	$object_ids = wp_cache_get( $cache_key, 'cache-nav-menu' );
 	if ( true === $use_cache && ! empty( $object_ids ) ) {
 		return $object_ids;
 	}
 
 	$object_ids = array();
-	$objects = array();
+	$objects    = array();
 
 	$menus = wp_get_nav_menus();
 	foreach ( $menus as $menu_maybe ) {
