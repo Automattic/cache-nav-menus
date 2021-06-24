@@ -1,4 +1,4 @@
-[![Run PHPUnit and PHPCS](https://github.com/Automattic/cache-nav-menus/actions/workflows/integrate.yml/badge.svg)](https://github.com/Automattic/cache-nav-menus/actions/workflows/integrate.yml)
+[![Run PHPUnit](https://github.com/Automattic/cache-nav-menus/actions/workflows/integrations.yml/badge.svg)](https://github.com/Automattic/cache-nav-menus/actions/workflows/integrations.yml) [![CS & Lint](https://github.com/Automattic/cache-nav-menus/actions/workflows/cs-lint.yml/badge.svg)](https://github.com/Automattic/cache-nav-menus/actions/workflows/cs-lint.yml)
 
 # Cache Nav Menus
  
