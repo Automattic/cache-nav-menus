@@ -48,7 +48,7 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array">
-				<element value="cache_nav_menus"/>
+				<element value="cache_nav_menu"/>
 			</property>
 		</properties>
 	</rule>
