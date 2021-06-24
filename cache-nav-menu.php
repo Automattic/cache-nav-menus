@@ -13,6 +13,8 @@
  * Description: Allows Core Nave Menus to be cached using WP.com's Advanced Post Cache
  * Author: Automattic
  * Version: 1.0
+ *
+ * @phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- legacy wpcom_vip_ prefixes exist
  */
 
 /**
@@ -48,9 +50,9 @@ function wpcom_vip_cached_nav_menu( $args = array(), $prime_cache = false ) {
 
 	$queried_object_id = empty( $wp_query->queried_object_id ) ? 0 : (int) $wp_query->queried_object_id;
 
-	$nav_menu_key = md5( serialize( $args ) . '-' . $queried_object_id );
+	$nav_menu_key = md5( serialize( $args ) . '-' . $queried_object_id ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize -- cache key okay
 	$my_args      = wp_parse_args( $args );
-	$my_args      = apply_filters( 'wp_nav_menu_args', $my_args );
+	$my_args      = apply_filters( 'wp_nav_menu_args', $my_args ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core filter
 	$my_args      = (object) $my_args;
 
 	if ( ( isset( $my_args->echo ) && true === $my_args->echo ) || ! isset( $my_args->echo ) ) {
@@ -73,7 +75,7 @@ function wpcom_vip_cached_nav_menu( $args = array(), $prime_cache = false ) {
 	}
 	if ( true === $echo ) {
 		// We're trusting that the cache hasn't been modified and not escaping on output.
-		echo $nav_menu; // WPCS: XSS ok.
+		echo $nav_menu; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	} else {
 		return $nav_menu;
 	}
